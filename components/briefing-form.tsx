@@ -73,7 +73,7 @@ export function BriefingForm() {
 
     try {
       // Envia os dados do formulário para o webhook
-      const response = await fetch("http://n8n-pco04wwo408o484gggw4g0c0.72.60.50.118.sslip.io/webhook/form", {
+      const response = await fetch("https://n8n.forwardbridge.com.br/webhook/form", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
