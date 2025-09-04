@@ -36,6 +36,7 @@ export const FORM_STEPS: FormStep[] = [
       { name: "lowSeasonRevenue", label: "Faturamento baixa temporada", type: "currency" },
       { name: "highSeasonRevenue", label: "Faturamento alta temporada", type: "currency" },
       { name: "whyCustomersBuy", label: "Por que o cliente compra de você?", type: "textarea" },
+      { name: "relevantInfoCompany", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
@@ -59,26 +60,45 @@ export const FORM_STEPS: FormStep[] = [
         ],
         hasOther: true,
       },
+      { name: "relevantInfoObjectives", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
     id: "history",
     title: "Histórico",
     fields: [
-      { name: "previousResults", label: "Resultados anteriores", type: "textarea" },
+      { 
+        name: "previousResultsPeriod", 
+        label: "Resultados anteriores (Histórico)", 
+        type: "select", 
+        options: ["1 a 3 meses", "3 a 6 meses", "1 ano ou mais"] 
+      },
+      { 
+        name: "resultSatisfaction", 
+        label: "Satisfação com o resultado", 
+        type: "select", 
+        options: ["Sim", "Não"] 
+      },
       { name: "paidTrafficInvestment", label: "Já investe em tráfego pago? Quanto?", type: "currency" },
       { name: "knowsCPA", label: "Sabe o que é CPA?", type: "select", options: ["Sim", "Não", "Mais ou menos"] },
       { name: "adPlatformsUsed", label: "Plataformas de anúncio já usadas", type: "text" },
-      { name: "currentResultsSatisfaction", label: "Satisfação com resultados atuais", type: "textarea" },
       { name: "existingSalesStrategies", label: "Estratégias de vendas existentes", type: "textarea" },
+      { name: "relevantInfoHistory", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
     id: "current-channels",
     title: "Canais Atuais",
     fields: [
-      { name: "channelsUsed", label: "Canais utilizados", type: "text" },
+      { 
+        name: "channelsUsed", 
+        label: "Canais utilizados", 
+        type: "checkboxes", 
+        options: ["Instagram", "Site", "LP", "TikTok", "LinkedIn"],
+        hasOther: true 
+      },
       { name: "contentFrequencyType", label: "Frequência e tipo de conteúdo", type: "textarea" },
+      { name: "relevantInfoChannels", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
@@ -95,58 +115,36 @@ export const FORM_STEPS: FormStep[] = [
           "Branding/Identidade Visual",
           "Estratégia e Consultoria",
           "Automação personalizada",
+          "Site",
+          "LP",
         ],
         hasOther: true,
       },
-      { name: "availableBudget", label: "Orçamento disponível", type: "currency", required: true },
+      { name: "desiredInvestment", label: "Investimento desejável", type: "currency", required: true },
+      { name: "relevantInfoServices", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
     id: "urgency-expectations",
-    title: "Urgência e Expectativas",
+    title: "Urgência",
     fields: [
-      { name: "plannedCampaign", label: "Campanha/lançamento previsto", type: "textarea" },
       { name: "idealStartDate", label: "Prazo ideal para começar", type: "text" },
+      { name: "expectedROI", label: "Expectativa de ROI", type: "text" },
+      { name: "plannedCampaign", label: "Campanha/lançamento previsto", type: "textarea" },
+      { name: "relevantInfoUrgency", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
     id: "competition",
     title: "Concorrência",
-    fields: [{ name: "referenceCompany", label: "Empresa de referência", type: "text" }],
-  },
-  {
-    id: "observations",
-    title: "Observações",
     fields: [
-      {
-        name: "proportionalResult",
-        label: "Resultado proporcional ao investimento?",
-        type: "select",
-        options: ["Sim", "Não", "Depende"],
-      },
-      { name: "generalObservations", label: "Observações gerais", type: "textarea" },
+      { name: "referenceCompany", label: "Empresa de referência", type: "text" },
+      { name: "competitorOne", label: "Concorrente 1", type: "text" },
+      { name: "competitorTwo", label: "Concorrente 2", type: "text" },
+      { name: "relevantInfoCompetition", label: "Informações relevantes", type: "textarea" },
     ],
   },
-  {
-    id: "financial-info",
-    title: "Informações Financeiras (Complementares)",
-    fields: [
-      { name: "monthlyMarketingBudget", label: "Orçamento mensal de marketing", type: "currency" },
-      { name: "annualBudgetType", label: "Verba anual definida ou variável", type: "text" },
-      { name: "investmentPriority", label: "Prioridade de investimentos", type: "textarea" },
-    ],
-  },
-  {
-    id: "citroen-specifics",
-    title: "Especificidades – Marca Citroën (Franquias)",
-    fields: [
-      {
-        name: "specificGuidelines",
-        label: "Guidelines específicos (brandbook, restrições legais, tom, assets)",
-        type: "textarea",
-      },
-    ],
-  },
+
   {
     id: "commercial-info",
     title: "Informações Comerciais",
@@ -162,6 +160,7 @@ export const FORM_STEPS: FormStep[] = [
         type: "select",
         options: ["Dias", "Semanas", "Meses"],
       },
+      { name: "relevantInfoCommercial", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
@@ -172,6 +171,7 @@ export const FORM_STEPS: FormStep[] = [
       { name: "currentRevenue", label: "Faturamento atual", type: "currency" },
       { name: "expected6MonthRevenue", label: "Faturamento esperado 6 meses", type: "currency" },
       { name: "expected12MonthRevenue", label: "Faturamento esperado 12 meses", type: "currency" },
+      { name: "relevantInfoModels", label: "Informações relevantes", type: "textarea" },
     ],
   },
   {
