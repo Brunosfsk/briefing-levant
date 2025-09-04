@@ -1,11 +1,13 @@
 export interface FormField {
   name: string
   label: string
-  type: "text" | "textarea" | "number" | "currency" | "percentage" | "select" | "checkboxes"
+  type: "text" | "textarea" | "number" | "currency" | "percentage" | "select" | "checkboxes" | "checkbox" | "range"
   required?: boolean
   placeholder?: string
   options?: string[]
   hasOther?: boolean
+  min?: number
+  max?: number
 }
 
 export interface FormStep {
@@ -20,17 +22,21 @@ export const FORM_STEPS: FormStep[] = [
     id: "company-info",
     title: "Informações da Empresa",
     fields: [
-      { name: "companyName", label: "Nome da empresa", type: "text", required: true },
-      { name: "segment", label: "Segmento de atuação", type: "text", required: true },
-      { name: "marketTime", label: "Tempo de mercado", type: "text", required: true },
+      { name: "companyName", label: "Nome da empresa", type: "text" },
+      { name: "useCompanyName", label: "Nome", type: "checkbox" },
+      { name: "segment", label: "Segmento de atuação", type: "text" },
+      { name: "marketTime", label: "Tempo de mercado", type: "text" },
       {
         name: "location",
         label: "Localização e abrangência",
         type: "select",
-        required: true,
         options: ["Local", "Regional", "Nacional", "Internacional"],
       },
-      { name: "responsible", label: "Responsável pelo marketing / decisor", type: "text", required: true },
+      { name: "country", label: "País", type: "text" },
+      { name: "state", label: "Estado", type: "text" },
+      { name: "city", label: "Cidade", type: "text" },
+      { name: "rangeKm", label: "Alcance em km", type: "range", min: 1, max: 1000 },
+      { name: "responsible", label: "Responsável pelo marketing / decisor", type: "text" },
       { name: "employeeCount", label: "Quantidade de funcionários", type: "number" },
       { name: "seasonality", label: "Sazonalidades (meses de alta/baixa)", type: "textarea" },
       { name: "lowSeasonRevenue", label: "Faturamento baixa temporada", type: "currency" },
@@ -94,7 +100,7 @@ export const FORM_STEPS: FormStep[] = [
         name: "channelsUsed", 
         label: "Canais utilizados", 
         type: "checkboxes", 
-        options: ["Instagram", "Site", "LP", "TikTok", "LinkedIn"],
+        options: ["Instagram", "Site", "Landing Page", "TikTok", "LinkedIn"],
         hasOther: true 
       },
       { name: "contentFrequencyType", label: "Frequência e tipo de conteúdo", type: "textarea" },
@@ -116,7 +122,7 @@ export const FORM_STEPS: FormStep[] = [
           "Estratégia e Consultoria",
           "Automação personalizada",
           "Site",
-          "LP",
+          "Landing Page",
         ],
         hasOther: true,
       },

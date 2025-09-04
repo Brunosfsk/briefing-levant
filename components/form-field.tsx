@@ -31,6 +31,25 @@ export function FormField({ field, value, onChange, error }: FormFieldProps) {
     }
   }
 
+  // Check if company name field should be disabled based on checkbox state
+  const isCompanyNameDisabled = field.name === "companyName" && value === ""
+
+  // Get form data context to check checkbox state
+  const getFormData = () => {
+    try {
+      const saved = localStorage.getItem("briefing-form-data")
+      if (saved) {
+        return JSON.parse(saved)
+      }
+    } catch (error) {
+      console.error("Error loading form data:", error)
+    }
+    return {}
+  }
+
+  const formData = getFormData()
+  const isNameCheckboxChecked = formData.useCompanyName === true
+
   const renderField = () => {
     switch (field.type) {
       case "text":
@@ -55,6 +74,7 @@ export function FormField({ field, value, onChange, error }: FormFieldProps) {
             min={field.type === "number" ? 0 : undefined}
             aria-invalid={!!error}
             className={error ? "border-red-500 focus:border-red-500" : ""}
+            disabled={field.name === "companyName" && isNameCheckboxChecked}
           />
         )
 
@@ -85,6 +105,42 @@ export function FormField({ field, value, onChange, error }: FormFieldProps) {
               ))}
             </SelectContent>
           </Select>
+        )
+
+      case "checkbox":
+        return (
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id={field.name}
+              checked={value === true}
+              onCheckedChange={(checked) => {
+                onChange(checked === true)
+              }}
+            />
+            <Label htmlFor={field.name} className="text-sm">
+              {field.label}
+            </Label>
+          </div>
+        )
+
+      case "range":
+        return (
+          <div className="space-y-2">
+            <div className="flex justify-between text-xs text-gray-500">
+              <span>{field.min || 0}</span>
+              <span>{value}</span>
+              <span>{field.max || 100}</span>
+            </div>
+            <input
+              type="range"
+              name={field.name}
+              value={value}
+              min={field.min || 0}
+              max={field.max || 100}
+              onChange={(e) => onChange(Number(e.target.value))}
+              className="w-full"
+            />
+          </div>
         )
 
       case "checkboxes":
